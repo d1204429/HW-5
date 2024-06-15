@@ -96,7 +96,7 @@ public class StockProcessor {
         case "type_a_top_20.csv":
           List<List<String>> aSortIncrease = new ArrayList<>(a);
           //Collections.sort(aSortIncrease, cus.LargeToSmall);
-          aSortIncrease.sort(cus.LargeToSmall);
+          aSortIncrease.sort(cus.largeToSmall);
           aSortIncrease = new ArrayList<>(DoubleFormat(aSortIncrease));
           writeCsvFile(aSortIncrease, path);
           break;
@@ -105,17 +105,19 @@ public class StockProcessor {
           aSortDecrease.sort(cus.smallToLarge);
           aSortDecrease = new ArrayList<>(DoubleFormat(aSortDecrease));
           writeCsvFile(aSortDecrease, path);
+          break;
         case "type_b_top_20.csv":
           List<List<String>> bSortIncrease = new ArrayList<>(b);
-          bSortIncrease.sort(cus.smallToLarge);
+          bSortIncrease.sort(cus.largeToSmall);
           bSortIncrease = new ArrayList<>(DoubleFormat(bSortIncrease));
           writeCsvFile(bSortIncrease, path);
+          break;
         case "type_b_bottom_20.csv":
           List<List<String>> bSortDecrease = new ArrayList<>(b);
           bSortDecrease.sort(cus.smallToLarge);
           bSortDecrease = new ArrayList<>(DoubleFormat(bSortDecrease));
           writeCsvFile(bSortDecrease, path);
-
+          break;
       }
       return path;
 
@@ -164,13 +166,13 @@ public class StockProcessor {
 
   class ComparatorsCus{
     public final Comparator<List<String>> smallToLarge = (List<String> o1, List<String> o2) -> {
-      double a= itemToDouble(o1.get(10));
-      double b=itemToDouble(o2.get(10));
+      double a = itemToDouble(o1.get(10));
+      double b = itemToDouble(o2.get(10));
       return Double.compare(a,b);
     };
-    public final Comparator<List<String>> LargeToSmall = (List<String> o1, List<String> o2) -> {
-      double a= itemToDouble(o1.get(10));
-      double b=itemToDouble(o2.get(10));
+    public final Comparator<List<String>> largeToSmall = (List<String> o1, List<String> o2) -> {
+      double a = itemToDouble(o1.get(10));
+      double b = itemToDouble(o2.get(10));
       return Double.compare(b,a);
     };
   }
