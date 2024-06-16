@@ -27,13 +27,18 @@ public class StockProcessor {
       title = output.getFirst();
       output.removeFirst();
 
-      b = output.stream()
-          .filter(i -> i.getFirst().charAt(1)=='0')
-          .toList();
+      a = new ArrayList<>();
+      for (List<String> item : output) {
+        if (!b.contains(item)) {
+          a.add(item);
+        }
+      }
 
-      a = output.stream()
-          .filter(i -> !b.contains(i))
-          .toList();
+      b = new ArrayList<>();
+      for (List<String> item : output) {
+        if (item.get(0).charAt(1) == '0') {
+        }
+      }
 
       fileResult.add(getFile("type_a_top_20.csv"));
       fileResult.add(getFile("type_a_bottom_20.csv")) ;
